@@ -20,14 +20,18 @@ brew tap programmablemd/homebrew-packages
 Then, install the desired package(s):
 
 ```bash
-# Install Spry Runbook CLI
-brew install spry-runbook
+# Add the tap
+brew tap programmablemd/homebrew-packages
 
-# Install Spry SQLPage CLI
+# Install spry-sqlpage
 brew install spry-sqlpage
 
-# Or install both
-brew install spry-runbook spry-sqlpage
+# Install spry-runbook
+brew install spry-runbook
+
+# Or install directly without tapping
+brew install programmablemd/packages/spry-sqlpage
+brew install programmablemd/packages/spry-runbook
 ```
 
 ## Usage
