@@ -10,7 +10,7 @@ class SpryRunbook < Formula
       sha256 "b6d9ff5e2c48a5c37d050734b6453db573ad31016a8bd34a75c8813c64f514f0"
     else
       url "https://github.com/programmablemd/packages/releases/download/v0.90.0/spry-runbook-macos.tar.gz"
-      sha256 "09c21b73030e8e343654a3cb4e3733d54b6e0ac01ad17ac18c9eaaf43be262d3"
+      sha256 "b6d9ff5e2c48a5c37d050734b6453db573ad31016a8bd34a75c8813c64f514f0"
     end
   end
 

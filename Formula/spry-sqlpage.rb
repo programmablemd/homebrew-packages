@@ -10,7 +10,7 @@ class SprySqlpage < Formula
       sha256 "452e879cb8b2040b09d9bf40a47b49ceeb9d9dcf14ddbe15d9298c960eb452fc"
     else
       url "https://github.com/programmablemd/packages/releases/download/v0.90.0/spry-sqlpage-macos.tar.gz"
-      sha256 "c37e5835d8b3e1dc58638eb69b8052d4a7336b3a1820e0b124f8fcb3dfd5211e"
+      sha256 "452e879cb8b2040b09d9bf40a47b49ceeb9d9dcf14ddbe15d9298c960eb452fc"
     end
   end
 
