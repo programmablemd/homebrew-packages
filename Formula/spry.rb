@@ -15,7 +15,7 @@ class Spry < Formula
   end
 
   on_linux do
-    url "https://github.com/programmablemd/packages/releases/download/v0.100.7/spry-sqlpage_0.100.7-ubuntu22.04u1_amd64.deb"
+    url "https://github.com/programmablemd/packages/releases/download/v0.100.7/spry_0.100.7-ubuntu22.04u1_amd64.deb"
     sha256 "9e108631311556f591057489f5047505792d35d905da552a9c4cb58ca01dd70b"
   end
 
@@ -24,7 +24,7 @@ class Spry < Formula
       bin.install "spry-macos" => "spry"
     elsif OS.linux?
       # For Linux, extract the DEB package using dpkg-deb
-      system "dpkg-deb", "-x", "spry-sqlpage_0.100.7-ubuntu22.04u1_amd64.deb", "."
+      system "dpkg-deb", "-x", "spry_0.100.7-ubuntu22.04u1_amd64.deb", "."
       bin.install "usr/bin/spry"
     end
   end

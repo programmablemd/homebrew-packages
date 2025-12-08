@@ -26,7 +26,7 @@ SPRY_FORMULA="Formula/spry.rb"
 
 # Artifact filenames
 SPRY_MAC="spry-macos.tar.gz"
-SPRY_DEB="spry-sqlpage_${VERSION}-ubuntu22.04u1_amd64.deb"
+SPRY_DEB="spry_${VERSION}-ubuntu22.04u1_amd64.deb"
 
 # Artifact URLs
 SPRY_MAC_URL="https://github.com/programmablemd/packages/releases/download/v${VERSION}/${SPRY_MAC}"
@@ -59,7 +59,7 @@ sed -i "s/version \".*\"/version \"${VERSION}\"/" "$SPRY_FORMULA"
 sed -i "s|v[0-9]\+\.[0-9]\+\.[0-9]\+|v${VERSION}|g" "$SPRY_FORMULA"
 
 # Update .deb filename
-sed -i "s|spry-sqlpage_.*-ubuntu22.04u1_amd64.deb|spry-sqlpage_${VERSION}-ubuntu22.04u1_amd64.deb|g" "$SPRY_FORMULA"
+sed -i "s|spry_.*-ubuntu22.04u1_amd64.deb|spry_${VERSION}-ubuntu22.04u1_amd64.deb|g" "$SPRY_FORMULA"
 
 # Update all sha256 values using awk for precise control
 # macOS has 2 sha256 entries (ARM and Intel), Linux has 1
