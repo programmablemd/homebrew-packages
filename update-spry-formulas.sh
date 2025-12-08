@@ -52,15 +52,30 @@ echo ""
 # =======================================================
 echo "✍️ Updating $SPRY_FORMULA"
 
+# Update version
 sed -i "s/version \".*\"/version \"${VERSION}\"/" "$SPRY_FORMULA"
+
+# Update all version references in URLs
 sed -i "s|v[0-9]\+\.[0-9]\+\.[0-9]\+|v${VERSION}|g" "$SPRY_FORMULA"
+
+# Update .deb filename
 sed -i "s|spry-sqlpage_.*-ubuntu22.04u1_amd64.deb|spry-sqlpage_${VERSION}-ubuntu22.04u1_amd64.deb|g" "$SPRY_FORMULA"
 
-# macOS SHA (first sha256)
-sed -i "0,/sha256 \".*\"/{s/sha256 \".*\"/sha256 \"${SPRY_MAC_SHA}\"/}" "$SPRY_FORMULA"
-
-# Linux SHA (second sha256)
-sed -i "s/sha256 \".*\"/sha256 \"${SPRY_DEB_SHA}\"/2" "$SPRY_FORMULA"
+# Update all sha256 values using awk for precise control
+# macOS has 2 sha256 entries (ARM and Intel), Linux has 1
+awk -v mac_sha="$SPRY_MAC_SHA" -v deb_sha="$SPRY_DEB_SHA" '
+  /on_macos/,/end/ {
+    if (/sha256/) {
+      sub(/sha256 "[^"]*"/, "sha256 \"" mac_sha "\"")
+    }
+  }
+  /on_linux/,/end/ {
+    if (/sha256/) {
+      sub(/sha256 "[^"]*"/, "sha256 \"" deb_sha "\"")
+    }
+  }
+  { print }
+' "$SPRY_FORMULA" > "${SPRY_FORMULA}.tmp" && mv "${SPRY_FORMULA}.tmp" "$SPRY_FORMULA"
 
 echo ""
 echo "📄 Updated Spry Formula:"
