@@ -6,7 +6,11 @@ set -e
 #   ./update-spry-formulas.sh 0.91.0
 #
 # Automatically updates:
-#   Formula/spry.rb
+#   Formula/spry.rb (latest version)
+#   Formula/spry@<version>.rb (versioned formula)
+#
+# Install specific version with:
+#   brew install spry@0.91.0
 #
 # Then commits & pushes changes.
 # ---------------------------------------------
@@ -23,6 +27,7 @@ echo "🔧 Updating Spry formula to version: $VERSION"
 echo ""
 
 SPRY_FORMULA="Formula/spry.rb"
+SPRY_VERSIONED_FORMULA="Formula/spry@${VERSION}.rb"
 
 # Artifact filenames
 SPRY_MAC="spry-macos.tar.gz"
@@ -83,6 +88,57 @@ cat "$SPRY_FORMULA"
 echo ""
 
 # =======================================================
+# CREATE VERSIONED FORMULA
+# =======================================================
+echo "✍️ Creating versioned formula: $SPRY_VERSIONED_FORMULA"
+
+# Convert version to class name (e.g., 0.100.7 -> AT0_100_7)
+VERSION_CLASS=$(echo "$VERSION" | sed 's/\./_/g')
+
+cat > "$SPRY_VERSIONED_FORMULA" << EOF
+class SpryAT${VERSION_CLASS} < Formula
+  desc "Spry CLI - A declarative web application framework"
+  homepage "https://github.com/programmablemd/packages"
+  version "${VERSION}"
+  license "MIT"
+
+  on_macos do
+    if Hardware::CPU.arm?
+      url "https://github.com/programmablemd/packages/releases/download/v${VERSION}/spry-macos.tar.gz"
+      sha256 "${SPRY_MAC_SHA}"
+    else
+      url "https://github.com/programmablemd/packages/releases/download/v${VERSION}/spry-macos.tar.gz"
+      sha256 "${SPRY_MAC_SHA}"
+    end
+  end
+
+  on_linux do
+    url "https://github.com/programmablemd/packages/releases/download/v${VERSION}/spry_${VERSION}-ubuntu22.04u1_amd64.deb"
+    sha256 "${SPRY_DEB_SHA}"
+  end
+
+  def install
+    if OS.mac?
+      bin.install "spry-macos" => "spry"
+    elsif OS.linux?
+      # For Linux, extract the DEB package using dpkg-deb
+      system "dpkg-deb", "-x", "spry_${VERSION}-ubuntu22.04u1_amd64.deb", "."
+      bin.install "usr/bin/spry"
+    end
+  end
+
+  test do
+    system "#{bin}/spry", "--version"
+  end
+end
+EOF
+
+echo ""
+echo "📄 Created Versioned Formula:"
+cat "$SPRY_VERSIONED_FORMULA"
+echo ""
+
+# =======================================================
 # CLEANUP
 # =======================================================
 echo "🧹 Cleaning up downloaded artifacts..."
@@ -93,8 +149,10 @@ rm -f "$SPRY_MAC" "$SPRY_DEB"
 # =======================================================
 echo "📦 Committing changes to git..."
 
-git add "$SPRY_FORMULA"
-git commit -m "Bump Spry formula to ${VERSION}"
-git push
+# git add "$SPRY_FORMULA" "$SPRY_VERSIONED_FORMULA"
+# git commit -m "Bump Spry formula to ${VERSION}"
+# git push
 
-echo "🎉 All done! Spry formula updated, committed, and pushed!"
+echo "🎉 All done! Spry formulas updated!"
+echo "   - $SPRY_FORMULA (latest)"
+echo "   - $SPRY_VERSIONED_FORMULA (versioned)"
