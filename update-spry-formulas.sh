@@ -150,9 +150,9 @@ rm -f "$SPRY_MAC" "$SPRY_DEB"
 # =======================================================
 echo "📦 Committing changes to git..."
 
-# git add "$SPRY_FORMULA" "$SPRY_VERSIONED_FORMULA"
-# git commit -m "Bump Spry formula to ${VERSION}"
-# git push
+git add "$SPRY_FORMULA" "$SPRY_VERSIONED_FORMULA"
+git commit -m "Bump Spry formula to ${VERSION}"
+git push
 
 echo "🎉 All done! Spry formulas updated!"
 echo "   - $SPRY_FORMULA (latest)"
