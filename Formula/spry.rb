@@ -1,22 +1,22 @@
 class Spry < Formula
   desc "Spry CLI - A declarative web application framework"
   homepage "https://github.com/programmablemd/packages"
-  version "0.100.1"
+  version "0.106.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/programmablemd/packages/releases/download/v0.100.1/spry-macos.tar.gz"
-      sha256 "01a46159993a24c85a364d2dd1a076d2f1ec2af3e9c250128a8d1f8cb9e48737"
+      url "https://github.com/programmablemd/packages/releases/download/v0.106.0/spry-macos.tar.gz"
+      sha256 "5a46cfc257a5c4798787af8385e52ca03ccc3947e0cf8dca7e9a7138eda50863"
     else
-      url "https://github.com/programmablemd/packages/releases/download/v0.100.1/spry-macos.tar.gz"
-      sha256 "01a46159993a24c85a364d2dd1a076d2f1ec2af3e9c250128a8d1f8cb9e48737"
+      url "https://github.com/programmablemd/packages/releases/download/v0.106.0/spry-macos.tar.gz"
+      sha256 "5a46cfc257a5c4798787af8385e52ca03ccc3947e0cf8dca7e9a7138eda50863"
     end
   end
 
   on_linux do
-    url "https://github.com/programmablemd/packages/releases/download/v0.100.1/spry_0.100.1-ubuntu22.04u1_amd64.deb"
-    sha256 "1656d9b01cad66c185a3c1832d50ba960648f2d5166911b3a6cc4b9354dc411a"
+    url "https://github.com/programmablemd/packages/releases/download/v0.106.0/spry_0.106.0-ubuntu22.04u1_amd64.deb"
+    sha256 "2ed177de92ce102f2d7b5d5a3d7816b74b78f4875996df33c7792656719275e0"
   end
 
   def install
@@ -24,7 +24,7 @@ class Spry < Formula
       bin.install "spry-macos" => "spry"
     elsif OS.linux?
       # For Linux, extract the DEB package using dpkg-deb
-      system "dpkg-deb", "-x", "spry_0.100.1-ubuntu22.04u1_amd64.deb", "."
+      system "dpkg-deb", "-x", "spry_0.106.0-ubuntu22.04u1_amd64.deb", "."
       bin.install "usr/bin/spry"
     end
   end
