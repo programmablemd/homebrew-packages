@@ -103,15 +103,8 @@ class SpryAT${VERSION_CLASS} < Formula
   version "${VERSION}"
   license "MIT"
 
-  on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/programmablemd/packages/releases/download/v${VERSION}/spry-macos.tar.gz"
-      sha256 "${SPRY_MAC_SHA}"
-    else
-      url "https://github.com/programmablemd/packages/releases/download/v${VERSION}/spry-macos.tar.gz"
-      sha256 "${SPRY_MAC_SHA}"
-    end
-  end
+  url "https://github.com/programmablemd/packages/releases/download/v${VERSION}/spry-macos.tar.gz"
+  sha256 "${SPRY_MAC_SHA}"
 
   on_linux do
     url "https://github.com/programmablemd/packages/releases/download/v${VERSION}/spry_${VERSION}-ubuntu22.04u1_amd64.deb"
