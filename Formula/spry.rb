@@ -4,6 +4,11 @@ class Spry < Formula
   version "1.0.0"
   license "MIT"
 
+  resource "manpage" do
+    url "https://github.com/programmablemd/packages/releases/download/v1.0.0/spry_1.0.0-ubuntu22.04u1_amd64.deb"
+    sha256 "b6feda95e000a415f0d3f71f324bba6a2db01a00cc31dfe83d205957ef6b7d98"
+  end
+
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/programmablemd/packages/releases/download/v1.0.0/spry-macos.tar.gz"
@@ -22,11 +27,24 @@ class Spry < Formula
   def install
     if OS.mac?
       bin.install "spry-macos" => "spry"
+      resource("manpage").stage do
+        system "dpkg-deb", "-x", "spry_1.0.0-ubuntu22.04u1_amd64.deb", "."
+        man1.install Dir["usr/share/man/man1/*.1.gz"]
+      end
     elsif OS.linux?
       # For Linux, extract the DEB package using dpkg-deb
       system "dpkg-deb", "-x", "spry_1.0.0-ubuntu22.04u1_amd64.deb", "."
       bin.install "usr/bin/spry"
       man1.install Dir["usr/share/man/man1/*.1.gz"]
+    end
+  end
+
+  def caveats
+    on_linux do
+      <<~EOS
+        To enable 'whatis' and 'apropos' commands for this formula's man pages,
+        run: sudo mandb
+      EOS
     end
   end
 
