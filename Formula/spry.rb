@@ -5,13 +5,8 @@ class Spry < Formula
   license "MIT"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/programmablemd/packages/releases/download/v1.0.0/spry-macos.tar.gz"
-      sha256 "bc311a136ada152d97de9a107f7b6b783f15a87261e8cc41101c2a76d1c66234"
-    else
-      url "https://github.com/programmablemd/packages/releases/download/v1.0.0/spry-macos.tar.gz"
-      sha256 "bc311a136ada152d97de9a107f7b6b783f15a87261e8cc41101c2a76d1c66234"
-    end
+    url "https://github.com/programmablemd/packages/releases/download/v1.0.0/spry-macos.tar.gz"
+    sha256 "bc311a136ada152d97de9a107f7b6b783f15a87261e8cc41101c2a76d1c66234"
   end
 
   on_linux do
