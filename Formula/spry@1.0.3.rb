@@ -5,11 +5,11 @@ class SpryAT103 < Formula
   license "MIT"
 
   url "https://github.com/programmablemd/packages/releases/download/v1.0.3/spry-macos.tar.gz"
-  sha256 "d92443703c3affbf26dd64e7d66bab017e7da254c7f6019a5984d0703146a6b5"
+  sha256 "2e485e3e3ec0d6d1a1bbe86a3fd126fd8cf1b548fe2f9ad16b6ac9f57a94c149"
 
   on_linux do
     url "https://github.com/programmablemd/packages/releases/download/v1.0.3/spry_1.0.3-ubuntu22.04u1_amd64.deb"
-    sha256 "0fd0b04710b693434f7e143b0fe0a22d1481711ef168cf03733e910dcb09f998"
+    sha256 "7c51ae43abc3df9ba916274c6711a9b46a7cb1bf7992c136aed84c7dcdf24f37"
   end
 
   def install
