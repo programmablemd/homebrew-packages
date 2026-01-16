@@ -6,12 +6,12 @@ class Spry < Formula
 
   on_macos do
     url "https://github.com/programmablemd/packages/releases/download/v1.7.0/spry-macos.tar.gz"
-    sha256 "45226e3c3bbeaad28dd1d57ab1a090633bce062a144d23f822f1b1118920846c"
+    sha256 "a2a251f158635b1028a8c6d7ec5d4a80bd4fd346f481a57225b988d6d1be900b"
   end
 
   on_linux do
     url "https://github.com/programmablemd/packages/releases/download/v1.7.0/spry_1.7.0-ubuntu22.04u1_amd64.deb"
-    sha256 "32e6544a1cfd532b456f5e51de02c3267cf6ab6d21f19084fa635c72181aa7ba"
+    sha256 "0965da082a909721cddacdc530001f864363b20e3f043e622e647ad35682d0dd"
   end
 
   def install
