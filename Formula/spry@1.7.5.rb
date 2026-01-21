@@ -1,13 +1,11 @@
-class Spry < Formula
+class SpryAT175 < Formula
   desc "Spry CLI - A declarative web application framework"
   homepage "https://github.com/programmablemd/packages"
   version "1.7.5"
   license "MIT"
 
-  on_macos do
-    url "https://github.com/programmablemd/packages/releases/download/v1.7.5/spry-macos.tar.gz"
-    sha256 "1d3a29ceddb8ce54c81cc3a00ec1b44304509dac5ec9932730df0daed1a3e885"
-  end
+  url "https://github.com/programmablemd/packages/releases/download/v1.7.5/spry-macos.tar.gz"
+  sha256 "1d3a29ceddb8ce54c81cc3a00ec1b44304509dac5ec9932730df0daed1a3e885"
 
   on_linux do
     url "https://github.com/programmablemd/packages/releases/download/v1.7.5/spry_1.7.5-ubuntu22.04u1_amd64.deb"
@@ -29,4 +27,3 @@ class Spry < Formula
     system "#{bin}/spry", "--version"
   end
 end
-
